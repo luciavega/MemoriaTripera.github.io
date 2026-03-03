@@ -108,12 +108,12 @@ main {
 /* Intro */
 
 .titulo-intro {
-  margin-left: 2.4vw;
+  margin-left: 5vw; 
   font-family: 'Vanguard CF SemiBold', sans-serif;
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: left;
   color: #003970;
-  margin-top: -1vw;
+  margin-top: 0vw;
 }
 
 .texto-intro {
@@ -324,6 +324,56 @@ footer {
 .bloque-filtro input[type="checkbox"] {
     margin-right: 6px;
     cursor: pointer;
+}
+
+.bloque-filtro select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 8px;
+    outline: none;
+    font-family: 'Public Sans', sans-serif;
+    background-color: white;
+    cursor: pointer;
+}
+
+.bloque-filtro select:focus {
+    border-color: #0F4170;
+}
+
+#militancia-checkboxes, #deporte-checkboxes, #instituciones-checkboxes, 
+#ccdd-checkboxes, #victima-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* dropdown-style for checkbox groups */
+.bloque-filtro details {
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.bloque-filtro summary {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px 0;
+    list-style: none;
+}
+
+/* hide default marker */
+.bloque-filtro summary::-webkit-details-marker {
+    display: none;
+}
+
+.bloque-filtro details div {
+    margin-top: 8px;
 }
 
 /* Buscador */
