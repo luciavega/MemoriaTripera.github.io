@@ -131,7 +131,7 @@ function inicializarFiltros(explicitData = []) {
     const palabrasClaveOrgPolitica = [
       'Montoneros', 'ERP', 'FAR', 'PRT', 'PCML', 'JP', 'JUP', 'UES', 
       'FJC', 'JTP', 'FAS', 'PST', 'OCPO', 'PROA', 'Siloísta', 'GRESS', 
-      'GUS', 'MAS', 'RL', 'FULP', 'GRA', 'FAL', 'PCR', 'FEP', 'PCA', 'ARP'
+      'GUS', 'MAS', 'RL', 'FULP', 'GRA', 'FAL', 'PCR', 'FEP', 'PCA', 'ARS'
     ];
     palabrasClaveOrgPolitica.forEach(org => {
       if (textoLower.includes(org.toLowerCase())) {
@@ -306,13 +306,13 @@ function aplicarFiltros() {
   }
 
   // Filtro Militancia
-  if (filtros.militancia) {
-    resultado = resultado.filter(p => {
-      if (p.militancia && Array.isArray(p.militancia)) {
-        return p.militancia.some(x => x.toLowerCase() === filtros.militancia.toLowerCase());
-      }
-      return (p.texto || '').toLowerCase().includes(filtros.militancia.toLowerCase());
-    });
+ if (filtros.militancia) {
+  const buscado = filtros.militancia.toLowerCase();
+  const regex = new RegExp(`\\b${buscado}\\b`, 'i'); // \b = límite de palabra
+  resultado = resultado.filter(p => 
+    (p.militancia && p.militancia.some(x => x.toLowerCase() === buscado)) ||
+    regex.test(p.texto || '')
+  );
   }
 
   // Filtro Deporte

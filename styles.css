@@ -410,6 +410,15 @@ footer {
     background-color: #0c3356;
 }
 
+.titulo-introbio {
+  margin-left: 5vw; 
+  font-family: 'Antonio', sans-serif;
+  font-size: 3rem;
+  text-align: left;
+  color: #003970;
+  margin-top: 0vw;
+}
+
 /* ---------- GRID ---------- */
 
 .grid-biografias {
@@ -498,6 +507,7 @@ footer {
 }
 
 /* Fotos Malvinas centradas y mismo tamaño que los videos */
+
 .foto-malvinas {
     display: flex;
     flex-direction: column;

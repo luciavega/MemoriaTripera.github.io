@@ -60,7 +60,7 @@
   {
     "id": "benitez-mallada-pedro-ramon",
     "nombre": "Benítez Mallada, Pedro Ramón",
-    "foto": "fotos\\Foto Benitez.jpg",
+    "foto": "fotos\\4) Benítez Mallada, Pedro Ramón.jpg",
     "ano": "1937",
     "provincia": "santa-fe",
  "subtitulo": "Delegado obrero, trabajador de YPF e hincha del Lobo, secuestrado y asesinado en 1975",
@@ -410,7 +410,7 @@
   },
   {
     "id": "piovoso-mengarelli-antonio-enrique",
-    "nombre": "Antonio Enrique Piovoso Mengarelli",
+    "nombre": " Piovoso Mengarelli, Antonio Enrique",
     "foto": "fotos\\Foto Piovoso_.jpg",
     "ano": "1953",
     "provincia": "buenos-aires",
@@ -419,7 +419,7 @@
   },
   {
     "id": "racero-pereda-daniel-alberto",
-    "nombre": "Daniel Alberto Racero Pereda",
+    "nombre": "Racero Pereda, Daniel Alberto",
     "foto": "fotos\\Foto Racero.webp",
     "ano": "1958",
     "provincia": "buenos-aires",
@@ -428,7 +428,7 @@
   },
   {
     "id": "rave-rivas-ricardo-arturo",
-    "nombre": "Ricardo Arturo Rave Rivas",
+    "nombre": "Rave Rivas, Ricardo Arturo",
     "foto": "fotos\\Foto Rave.jpg",
     "ano": "1956",
     "provincia": "buenos-aires",
@@ -437,7 +437,7 @@
   },
   {
     "id": "raverta-gorostiague-maria-ines",
-    "nombre": "María Inés Raverta Gorostiague",
+    "nombre": "Raverta Gorostiague, María Inés",
     "foto": "fotos\\Foto Raverta.jpg",
     "ano": "1956",
     "provincia": "buenos-aires",
@@ -446,7 +446,7 @@
   },
   {
     "id": "revoledo-mario-horacio",
-    "nombre": "Mario Horacio Revoledo",
+    "nombre": "Revoledo, Mario Horacio",
     "foto": "fotos\\24) Revoledo, Mario Horacio.jpeg",
     "ano": "1950",
     "provincia": "buenos-aires",
@@ -455,7 +455,7 @@
   },
   {
     "id": "rivelli-branda-horacio-omar",
-    "nombre": "Horacio Omar Rivelli Branda",
+    "nombre": "Rivelli Branda, Horacio Omar",
     "foto": "fotos\\25) Rivelli Branda, Horacio Omar.jpg",
     "ano": "1954",
     "provincia": "buenos-aires",
@@ -464,7 +464,7 @@
   },
   {
     "id": "rivelli-armendariz-roberto-abel",
-    "nombre": "Roberto Abel Rivelli Armendariz",
+    "nombre": "Rivelli Armendariz, Roberto Abel",
     "foto": "fotos\\26) Rivelli Armendariz, Roberto Abel.jpeg",
     "ano": "1951",
     "provincia": "buenos-aires",
@@ -473,7 +473,7 @@
   },
   {
     "id": "rocamora-perilli-roberto-antonio",
-    "nombre": "Roberto Antonio Rocamora Perilli",
+    "nombre": "Rocamora Perilli, Roberto Antonio",
     "foto": "fotos\\27) Rocamora Perilli, Roberto Antonio.jpg",
     "ano": "1955",
     "provincia": "buenos-aires",
@@ -482,7 +482,7 @@
   },
   {
     "id": "rodriguez-ceballos-justo-gregorio",
-    "nombre": "Justo Gregorio Rodríguez Ceballos",
+    "nombre": "Rodríguez Ceballos,Justo Gregorio",
     "foto": "fotos\\28) Rodríguez Ceballos, Justo Gregorio.jpg",
     "ano": "1952",
     "provincia": "san-luis",
@@ -491,7 +491,7 @@
   },
   {
     "id": "rusconi-lencina-enrique-oscar",
-    "nombre": "Enrique Oscar Rusconi Lencina",
+    "nombre": "Rusconi Lencina, Enrique Oscar",
     "foto": "fotos\\29) Rusconi Lencina, Enrique Oscar.jpg",
     "ano": "1946",
     "provincia": "buenos-aires",
@@ -500,7 +500,7 @@
   },
   {
     "id": "sanchez-santillan-miguel-benancio",
-    "nombre": "Miguel Benancio Sánchez Santillán",
+    "nombre": "Sánchez Santillán, Miguel Benancio",
     "foto": "fotos\\Foto Sánchez opción 1.jpg",
     "ano": "1952",
     "provincia": "tucuman",
@@ -509,7 +509,7 @@
   },
   {
     "id": "scaccheri-butler-jose-alberto",
-    "nombre": "José Alberto Scaccheri Butler",
+    "nombre": "Scaccheri Butler, José Alberto",
     "foto": "fotos\\30) Scaccheri Butler, José Alberto.jpg",
     "ano": "1951",
     "provincia": "buenos-aires",
@@ -518,7 +518,7 @@
   },
   {
     "id": "tello-biscayart-pablo-daniel",
-    "nombre": "Pablo Daniel Tello Biscayart",
+    "nombre": "Tello Biscayart, Pablo Daniel",
     "foto": "fotos\\31) Tello Biscayart, Pablo Daniel.jpeg",
     "ano": "1949",
     "provincia": "buenos-aires",
@@ -527,7 +527,7 @@
   },
   {
     "id": "tello-biscayart-rafael-arnaldo",
-    "nombre": "Rafael Arnaldo Tello Biscayart",
+    "nombre": "Tello Biscayart, Rafael Arnaldo",
     "foto": "fotos\\32) Tello Biscayart, Rafael Arnaldo.jpg",
     "ano": "1952",
     "provincia": "buenos-aires",
@@ -536,7 +536,7 @@
   },
   {
     "id": "tierno-franco-patricio-blas",
-    "nombre": "Patricio Blas Tierno Franco",
+    "nombre": "Tierno Franco, Patricio Blas",
     "foto": "fotos\\33) Tierno Franco, Patricio Blas.jpg",
     "ano": "1952",
     "provincia": "buenos-aires",
@@ -545,7 +545,7 @@
   },
   {
     "id": "torres-ferrer-millan-luis-eduardo",
-    "nombre": "Luis Eduardo Torres Ferrer Millán",
+    "nombre": "Torres Ferrer Millán, Luis Eduardo",
     "foto": "fotos\\Foto Torres Ferrer.jpg",
     "ano": "1945",
     "provincia": "buenos-aires",
@@ -554,7 +554,7 @@
   },
   {
     "id": "zuppa-rapacini-nestor-oscar",
-    "nombre": "Néstor Oscar Zuppa Rapacini",
+    "nombre": "Zuppa Rapacini, Néstor Oscar",
     "foto": "fotos\\34) Zuppa Rapacini, Néstor Oscar.jpg",
     "ano": "1944",
     "provincia": "buenos-aires",
