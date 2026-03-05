@@ -84,6 +84,16 @@
             font-size: 1.1rem;
         }
 
+        .bio-video-embed {
+            width: 55%;
+            max-width: 760px;
+            aspect-ratio: 4 / 3;
+            margin: 30px auto 10px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
         /* Responsive: título/subtítulo debajo de la imagen en móvil */
         @media (max-width: 768px) {
             .bio-top {
@@ -124,6 +134,262 @@
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
 
+// Cargar aca los videos por ID. Si no hay src, no se renderiza nada.
+const videosPorId = {
+    'alaye-dematti-carlos-esteban': {
+        src: 'https://www.youtube.com/embed/YyYmKBZ2qaM?list=PL5lB4sns5dJUWznzPadUoEehXe8pWdFSR',
+        title: 'Carlos Esteban Alaye Dematti | Socio Honorario de Gimnasia'
+    },
+    'amuchastegui-messina-gladys-mabel': {
+        src: 'https://www.youtube.com/embed/Dxs99ndSwMQ?si=dhrUdi1eV1ztyZSj',
+        title: 'Gladys Mabel Amuchastegui Messina | Socia Honorario de Gimnasia'
+    },
+    'arrua-lavochnik-nestor-edgardo': {
+        src: 'https://www.youtube.com/embed/mya_BGbgetE?si=_c4nwLyKKs47YAD6',
+        title: 'Nestor Edgardo Arrua Lavochnik | Socio Honorario de Gimnasia'
+    },
+    'attademo-abigail-armando': {
+        src: 'https://www.youtube.com/embed/0TmEo3mkq0k?si=QD8hlEzJPShJAq2p',
+        title: 'Abigail Armando Attademo | Socio Honorario de Gimnasia'
+    },
+    'axat-demarchi-rodolfo-jorge': {
+        src: 'https://www.youtube.com/embed/oncUabvPDd0?si=bG26VZwxWF14mwyC',
+        title: 'Rodolfo Jorge Axat Demarchi | Socio Honorario de Gimnasia'
+    },
+    'bacchini-gomila-hector-federico': {
+        src: 'https://www.youtube.com/embed/5S8xiFKPQIg?si=OWoCyg0Idd0e9pvu',
+        title: 'Hector Federico Bacchini Gomila | Socio Honorario de Gimnasia'
+    },
+    'balut-gianini-pablo-alberto': {
+        src: 'https://www.youtube.com/embed/qGUDl-AU7V0?si=7XpZEBtajqL4BNNn',
+        title: 'Pablo Alberto Balut Gianini | Socio Honorario de Gimnasia'
+    },
+    'benitez-mallada-pedro-ramon': {
+        src: 'https://www.youtube.com/embed/Si8cGl2sETo?si=puX854gtakSpj-Uh',
+        title: 'Pedro Ramon Benitez Mallada | Socio Honorario de Gimnasia'
+    },
+    'benitez-reguera-julio-fabian': {
+        src: 'https://www.youtube.com/embed/J8DHBcHZdWA?si=luUGCUeTuYA7FOQx',
+        title: 'Julio Fabian Benitez Reguera | Socio Honorario de Gimnasia'
+    },
+    'bossio-urriza-alberto-oscar': {
+        src: 'https://www.youtube.com/embed/CFz-yYJZTV4?si=GOePsP22LbPZIP6A',
+        title: 'Alberto Oscar Bossio Urriza | Socio Honorario de Gimnasia'
+    },
+     'brawerman-zeff-alfredo-oscar': {
+        src: 'https://www.youtube.com/embed/FLsTwAe15iU?si=4W03C5DImwDr67tE',
+        title: 'Alfredo Oscar Brawerman Zeff | Socio Honorario de Gimnasia'
+    },
+    'carrera-tomatti-eduardo': {
+        src: 'https://www.youtube.com/embed/7sHD6vm4rW4?si=tT40Y-KoLvXW9Rh_',
+        title: 'Eduardo Carrera Tomatti | Socio Honorario de Gimnasia'
+    },
+     'carrera-tomatti-ricardo-raul': {
+        src: 'https://www.youtube.com/embed/7sHD6vm4rW4?si=tT40Y-KoLvXW9Rh_',
+        title: 'Ricardo Raul Carrera Tomatti | Socio Honorario de Gimnasia'
+    },
+    'ciancio-alegre-luis-alberto': {
+        src: 'https://www.youtube.com/embed/beSQ8TOyxfE?si=gzixdyXflaXPLsA0',
+        title: 'Luis Alberto Ciancio Alegre | Socio Honorario de Gimnasia'
+    },
+    'cena-campanaro-jorge-nestor': {
+        src: 'https://www.youtube.com/embed/9vGaJntHbcM?si=HDoozH9oXUJ-UmDX',
+        title: 'Jorge Nestor Cena Campanaro | Socio Honorario de Gimnasia'
+    },
+     'corsiglia-daniele-hugo-arnaldo': {
+        src: 'https://www.youtube.com/embed/TCgthVL6v5c?si=6Y5HZ80ad256Brc6',
+        title: 'Daniele Hugo Arnaldo Corsiglia | Socio Honorario de Gimnasia'
+    },
+    'delicostas-echarri-jorge-ruben': {
+        src: 'https://www.youtube.com/embed/_Dq1ZUe-l78?si=ZJ8IGlpbrJJtJ-QW',
+        title: 'Jorge Ruben Delicostas Echarri | Socio Honorario de Gimnasia'
+    },
+    'de-livano-jorge-corina': {
+        src: 'https://www.youtube.com/embed/Ux7_baYPSxQ?si=cjrjfpWHVf3x0f4C',
+        title: 'Albarracin Corina De Liviano Jorge | Socia Honorario de Gimnasia'
+    },
+     'de-marco-busciacco-ambrosio-francisco': {
+        src: 'https://www.youtube.com/embed/vxqAr9dORbo?si=kcMIZoX2HMIIa7cn',
+        title: 'Francisco De Marco Busciacco Ambrosio | Socio Honorario de Gimnasia'
+    },
+    'del-buono-alba-rosa-estela': {
+        src: 'https://www.youtube.com/embed/y0b1dgXy4JY?si=nd2VKUdl0u4HcuGI',
+        title: 'Alba Rosa Estela Del Buono | Socia Honorario de Gimnasia'
+    },
+     'di-bastiano-curcio-guillermo-ruben': {
+        src: 'https://www.youtube.com/embed/mya_BGbgetE?si=VcqaIL96dhtZTytX',
+        title: 'Guillermo Ruben Di Bastiano Curcio | Socio Honorario de Gimnasia'
+    },
+    'di-giacinti-torrillas-julio-cesar': {
+        src: 'https://www.youtube.com/embed/4P-oBZDmrFg?si=n3gLFZ2bUwDnCk39',
+        title: 'Julio Cesar Di Giacinti Torrillas | Socio Honorario de Gimnasia'
+    },
+     'disalvo-di-francesco-pedro-alfredo': {
+        src: 'https://www.youtube.com/embed/8kiddsWM9wc?si=0vnyh3ZACOtvs4xv',
+        title: 'Pedro Alfredo Disalvo Di Francesco | Socio Honorario de Gimnasia'
+    },
+    'falcone-mendez-maria-claudia': {
+        src: 'https://www.youtube.com/embed/HdDKcLP5rQI?si=OLV9jCtJRT87m07A',
+        title: 'Maria Claudia Falcone Mendez | Socia Honorario de Gimnasia'
+    },
+     'fonseca-cuenca-nestor-narciso': {
+        src: 'https://www.youtube.com/embed/XufFa6IyWQM?si=h53hcTCA3tFjg8K5',
+        title: 'Nestor Narciso Fonseca Cuenca | Socio Honorario de Gimnasia'
+    },
+    'fueyo-pedraza-roberto-rene': {
+        src: 'https://www.youtube.com/embed/KFhe2sBichc?si=1Ykfl1psYHDlueEL',
+        title: 'Roberto Rene Fueyo Pedraza | Socio Honorario de Gimnasia'
+    },
+     'giglio-valli-carlos-alberto': {
+        src: 'https://www.youtube.com/embed/fCK12iRqcwQ?si=wZ2WS3iA62G0AVkG',
+        title: 'Carlos Alberto Giglio Valli | Socio Honorario de Gimnasia'
+    },
+    'guadix-vignau-gervasio-martin': {
+        src: 'https://www.youtube.com/embed/gl3O0Kn0lcs?si=ZuP5T6IyjKVAe0e8',
+        title: 'Gervasio Martin Guadix Vignau | Socio Honorario de Gimnasia'
+    },
+     'guzner-lorenzo-ana-maria': {
+        src: 'https://www.youtube.com/embed/h7OxfCxyf8s?si=mLlYWNanKyH4ddqr',
+        title: 'Ana Maria Guzner Lorenzo | Socia Honorario de Gimnasia'
+    },
+    'itzigsohn-naymark-matilde': {
+        src: 'https://www.youtube.com/embed/3y3_pv318VI?si=hNpCJNTKi1dlT-co',
+        title: 'Matilde Itzigsohn Naymark | Socia Honorario de Gimnasia'
+    },
+     'jauregui-juan-martin': {
+        src: 'https://www.youtube.com/embed/or7fRhbUMoQ?si=j6PdUOlHy54ZcF7H',
+        title: 'Juan Martin Jauregui | Socio Honorario de Gimnasia'
+    },
+    'lara-perez-guillermo-antonio': {
+        src: 'https://www.youtube.com/embed/EEKe5Eab3xk?si=G_G_AEto2E6ve_YU',
+        title: 'Guillermo Antonio Lara Perez | Socio Honorario de Gimnasia'
+    },
+     'larcamon-garcia-amelia-ercilia': {
+        src: 'https://www.youtube.com/embed/IgMrFC7IrqU?si=Kga0NTKztZ1AgG-E',
+        title: 'Amelia Ercilia Larcamon Garcia | Socia Honorario de Gimnasia'
+    },
+    'logiurato-alvarez-haroldo-santos': {
+        src: 'https://www.youtube.com/embed/JDOEP2T9hZE?si=eK0v3g568eWN6Cdh',
+        title: 'Haroldo Santos Logiurato Alvarez | Socio Honorario de Gimnasia'
+    },
+     'logiurato-alvarez-luis-maria': {
+        src: 'https://www.youtube.com/embed/JDOEP2T9hZE?si=eK0v3g568eWN6Cdh',
+        title: 'Luis Maria Logiurato Alvarez | Socio Honorario de Gimnasia'
+    },
+    'logiurato-diaz-fabian-haroldo': {
+        src: 'https://www.youtube.com/embed/JDOEP2T9hZE?si=eK0v3g568eWN6Cdh',
+        title: 'Fabian Haroldo Logiurato Diaz | Socio Honorario de Gimnasia'
+    },
+     'lopez-muntaner-francisco-bartolome': {
+        src: 'https://www.youtube.com/embed/Mw7jTzaEyAI?si=E3ffi3eyCSRt2vlF',
+        title: 'Francisco Bartolome Lopez Muntaner | Socio Honorario de Gimnasia'
+    },
+     'loyola-gonzalez-de-paz-luisa-mabel': {
+        src: 'https://www.youtube.com/embed/fF5_OorID5w?si=yQNbIg311E4Shnrv',
+        title: 'Luisa Mabel Loyola Gonzalez de Paz | Socia Honorario de Gimnasia'
+    },
+    'matamoros-lopez-julio-alberto': {
+        src: 'https://www.youtube.com/embed/q7uOocVduKc?si=aW2ruxHEDrwobWxe',
+        title: 'Julio Alberto Matamoros Lopez | Socio Honorario de Gimnasia'
+    },
+     'mendiburu-elicabe-moler-daniel-eduardo': {
+        src: 'https://www.youtube.com/embed/xgB7ZivEjio?si=rAb9Lz0zEaD4-NT9',
+        title: 'Daniel Eduardo Mendiburu Elicabe Moler | Socio Honorario de Gimnasia'
+    },
+     'mucciolo-scipioni-irene-nelida': {
+        src: 'https://www.youtube.com/embed/Ob0GIS5yx7o?si=d-4nSFZzewxkmNOd',
+        title: 'Irene Nelida Mucciolo Scipioni | Socia Honorario de Gimnasia'
+    },
+    'munitis-orione-luis': {
+        src: 'https://www.youtube.com/embed/Kshvi-aAkMc?si=tae3-kA-XsE6jl2y',
+        title: 'Luis Munitis Orione | Socio Honorario de Gimnasia'
+    },
+     'noriega-beltrame-mario-luis': {
+        src: 'https://www.youtube.com/embed/Vgg8nbVE-pM?si=KvbtOfkqoM_zk4YL',
+        title: 'Mario Luis Noriega Beltrame | Socio Honorario de Gimnasia'
+    },
+     'ogando-gibello-gustavo-ruben': {
+        src: 'https://www.youtube.com/embed/WDVDoc9ay_g?si=RNFK-tmqUPQtd5De',
+        title: 'Gustavo Ruben Ogando Gibello | Socio Honorario de Gimnasia'
+    },
+    'pascua-cruz-otilio-julio': {
+        src: 'https://www.youtube.com/embed/-tQvaZnDpK0?si=ISNvcdao8tJwL6HL',
+        title: 'Otilio Julio Pascua Cruz | Socio Honorario de Gimnasia'
+    },
+     'pereira-rossi-biscayart-eduardo-daniel': {
+        src: 'https://www.youtube.com/embed/BBxa0IiFx5M?si=xYOnb25e2Q25BSop',
+        title: 'Eduardo Daniel Pereira Rossi Biscayart | Socio Honorario de Gimnasia'
+    },
+     'piovoso-mengarelli-antonio-enrique': {
+        src: 'https://www.youtube.com/embed/RjeDp7QucdI?si=bVEi5JV3WeUsdwg_',
+        title: 'Antonio Enrique Piovoso Mengarelli | Socio Honorario de Gimnasia'
+    },
+     'racero-pereda-daniel-alberto': {
+        src: 'https://www.youtube.com/embed/y4u1szBA6S0?si=sSBmmBC3mnkEn9F-',
+        title: 'Daniel Alberto Racero Pereda | Socio Honorario de Gimnasia'
+    },
+    'rave-rivas-ricardo-arturo': {
+        src: 'https://www.youtube.com/embed/Gnlbdo-TygQ?si=iwssJFPzXOYz4Ofh',
+        title: 'Ricardo Arturo Rave Rivas | Socio Honorario de Gimnasia'
+    },
+     'raverta-gorostiague-maria-ines': {
+        src: 'https://www.youtube.com/embed/XWLDtgOm000?si=J9ZVd24RiopIO5cr',
+        title: 'Maria Ines Raverta Gorostiague | Socia Honorario de Gimnasia'
+    },
+     'revoledo-mario-horacio': {
+        src: 'https://www.youtube.com/embed/ID-OV8U4kN8?si=6Uq6N5ep-yTN_Nqi',
+        title: 'Mario Horacio Revoledo | Socio Honorario de Gimnasia'
+    },
+     'rivelli-branda-horacio-omar': {
+        src: 'https://www.youtube.com/embed/y0b1dgXy4JY?si=Ap1yKxMwv1VNd8rW',
+        title: 'Horacio Omar Rivelli Branda | Socio Honorario de Gimnasia'
+    },
+    'rivelli-armendariz-roberto-abel': {
+        src: 'https://www.youtube.com/embed/y0b1dgXy4JY?si=Ap1yKxMwv1VNd8rW',
+        title: 'Roberto Abel Rivelli Armendariz | Socio Honorario de Gimnasia'
+    },
+     'rocamora-perilli-roberto-antonio': {
+        src: 'https://www.youtube.com/embed/m26n0L0H654?si=KvSghmvhfgXDzcuv',
+        title: 'Roberto Antonio Rocamora Perilli | Socio Honorario de Gimnasia'
+    },
+     'rodriguez-ceballos-justo-gregorio': {
+        src: 'https://www.youtube.com/embed/esHYLJfg1As?si=VsXmPwOjs7CJKeDI',
+        title: 'Justo Gregorio Rodriguez Ceballos | Socio Honorario de Gimnasia'
+    },
+     'rusconi-lencina-enrique-oscar': {
+        src: 'https://www.youtube.com/embed/PXr98wXYZAs?si=TRQ7ojjg1qzJCbmu',
+        title: 'Enrique Oscar Rusconi Lencina | Socio Honorario de Gimnasia'
+    },
+    'sanchez-santillan-miguel-benancio': {
+        src: 'https://www.youtube.com/embed/yD83Tfmb4AA?si=tiXOHbGEuPu7pH0b',
+        title: 'Miguel Benancio Sanchez Santillan | Socio Honorario de Gimnasia'
+    },
+     'scaccheri-butler-jose-alberto': {
+        src: 'https://www.youtube.com/embed/5m7bAa0r0bo?si=bgd3TqKQapyIDJrD',
+        title: 'Jose Alberto Scaccheri Butler | Socio Honorario de Gimnasia'
+    },
+     'tello-biscayart-pablo-daniel': {
+        src: 'https://www.youtube.com/embed/BBxa0IiFx5M?si=reuhYgIeB7NZeACO',
+        title: 'Pablo Daniel Tello Biscayart | Socio Honorario de Gimnasia'
+    },
+     'tello-biscayart-rafael-arnaldo': {
+        src: 'https://www.youtube.com/embed/BBxa0IiFx5M?si=reuhYgIeB7NZeACO',
+        title: 'Rafael Arnaldo Tello Biscayart | Socio Honorario de Gimnasia'
+    },
+    'tierno-franco-patricio-blas': {
+        src: 'https://www.youtube.com/embed/aEzVGm-9aM8?si=WbHUdaKjeB7q6WhD',
+        title: 'Franco Patricio Blas Tierno | Socio Honorario de Gimnasia'
+    },
+    'torres-ferrer-millan-luis-eduardo': {
+        src: 'https://www.youtube.com/embed/IgMrFC7IrqU?si=UnVLq68lsFUO2dV4',
+        title: 'Luis Eduardo Torres Ferrer Millan | Socio Honorario de Gimnasia'
+    },
+    'zuppa-rapacini-nestor-oscar': {
+        src: 'https://www.youtube.com/embed/rx77zeZILks?si=cYdLjhbqGoVqFgMa',
+        title: 'Nestor Oscar Zuppa Rapacini | Socio Honorario de Gimnasia'
+    }
+};
+
 fetch('biografias.json')
   .then(r => r.json())
   .then(personas => {
@@ -132,6 +398,13 @@ fetch('biografias.json')
       document.getElementById('detalle-container').innerHTML = '<p>Biografía no encontrada.</p>';
       return;
     }
+
+        const video = videosPorId[p.id];
+        const videoHtml = video && video.src
+            ? `<section class="playlist-section">
+                    <iframe class="bio-video-embed" width="942" height="530" src="${video.src}" title="${video.title || p.nombre}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </section>`
+            : '';
     
     document.getElementById('detalle-container').innerHTML = `
       <div class="bio-header">
@@ -143,6 +416,7 @@ fetch('biografias.json')
           </div>
         </div>
         <div id="bio-texto">${p.texto}</div>
+                ${videoHtml}
       </div>
     `;
 
