@@ -63,16 +63,23 @@ const glosario = {
 
 function aplicarGlosario() {
     const body = document.body;
+    const clavesGlosario = Object.keys(glosario)
+        .sort((a, b) => b.length - a.length)
+        .map(clave => clave.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const regexGlosario = new RegExp(`\\b(${clavesGlosario.join('|')})\\b`, 'g');
 
     function recorrerNodo(nodo) {
         if (nodo.nodeType === 3) { // Nodo de texto
+            if (nodo.parentElement && nodo.parentElement.closest('.tooltip, .tooltiptext, script, style')) {
+                return;
+            }
+
             let texto = nodo.nodeValue;
 
-            // Reemplazar las palabras del glosario
-            for (const palabra in glosario) {
-                const regex = new RegExp(`\\b${palabra}\\b`, "g");
-                texto = texto.replace(regex, `<span class="tooltip">${palabra}<span class="tooltiptext">${glosario[palabra]}</span></span>`);
-            }
+            // Reemplazar siglas del glosario en una sola pasada.
+            texto = texto.replace(regexGlosario, (sigla) => {
+                return `<span class="tooltip">${sigla}<span class="tooltiptext">${glosario[sigla]}</span></span>`;
+            });
 
             // Reemplazar la frase especial "Gimnasia ¡Presente, siempre!"
             const fraseEspecial = "Gimnasia ¡Presente, siempre!";
