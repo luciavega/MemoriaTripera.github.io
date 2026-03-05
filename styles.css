@@ -200,7 +200,7 @@ footer {
     height: 2px;
     background: black;
     width: 100%;
-    margin-top: 50px; 
+    margin-top: 0px; 
 }
 
 .footer-content {
@@ -525,18 +525,13 @@ footer {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.foto-malvinas img:hover {
-    transform: scale(1.03);
-    transition: transform 0.2s ease;
-}
-
 /* Pie de foto Malvinas */
 .pie-foto-malvinas {
     text-align: center;
     font-family: 'Public Sans SemiBold', sans-serif;
     font-size: 0.95rem;
     color: #555;
-    margin-top: 8px;
+    margin-top: 15px;
 }
 
 /* Texto desplegable estilo intro */
