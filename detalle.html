@@ -85,13 +85,51 @@
         }
 
         .bio-video-embed {
-            width: 55%;
-            max-width: 760px;
-            aspect-ratio: 4 / 3;
+            width: min(100%, 760px);
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
             margin: 30px auto 10px;
             display: block;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
+        }
+
+        .bio-nav {
+            margin: 4rem 0 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        .bio-nav-link {
+            min-width: 220px;
+            border: 2px solid #0F4170;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #0F4170;
+            font-family: 'Public Sans', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.88);
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .bio-nav-link:hover,
+        .bio-nav-link:focus-visible {
+            background: #0F4170;
+            color: #fff;
+            outline: none;
+        }
+
+        .bio-nav-link[aria-disabled="true"] {
+            pointer-events: none;
+            border-color: #9fb0bf;
+            color: #7b8a98;
+            background: rgba(255, 255, 255, 0.6);
         }
 
         /* Responsive: título/subtítulo debajo de la imagen en móvil */
@@ -102,6 +140,22 @@
             }
             .bio-info {
                 text-align: center;
+            }
+
+            .bio-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .bio-nav-link {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .bio-video-embed {
+                width: 100%;
+                max-width: 100%;
+                margin: 20px auto 8px;
             }
         }
     </style>
@@ -134,7 +188,15 @@
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
 
-// Cargar aca los videos por ID. Si no hay src, no se renderiza nada.
+function construirLinkNavegacion(persona, textoFallback) {
+    if (!persona) {
+        return `<span class="bio-nav-link" aria-disabled="true" role="link">${textoFallback}</span>`;
+    }
+
+    return `<a class="bio-nav-link" href="detalle.html?id=${encodeURIComponent(persona.id)}">${textoFallback}</a>`;
+}
+
+// Cargar aca los videos por ID. Si no hay src, no se renderiza nada
 const videosPorId = {
     'alaye-dematti-carlos-esteban': {
         src: 'https://www.youtube.com/embed/YyYmKBZ2qaM?list=PL5lB4sns5dJUWznzPadUoEehXe8pWdFSR',
@@ -394,15 +456,26 @@ fetch('biografias.json')
   .then(r => r.json())
   .then(personas => {
     const p = personas.find(x => x.id === id);
+        const indiceActual = personas.findIndex(x => x.id === id);
     if (!p) {
       document.getElementById('detalle-container').innerHTML = '<p>Biografía no encontrada.</p>';
       return;
     }
 
+        const biografiaAnterior = indiceActual > 0 ? personas[indiceActual - 1] : null;
+        const biografiaSiguiente = indiceActual < personas.length - 1 ? personas[indiceActual + 1] : null;
+
+        const navHtml = `
+            <nav class="bio-nav" aria-label="Navegación entre biografías">
+                ${construirLinkNavegacion(biografiaAnterior, 'Ver biografía anterior')}
+                ${construirLinkNavegacion(biografiaSiguiente, 'Ver siguiente biografía')}
+            </nav>
+        `;
+
         const video = videosPorId[p.id];
         const videoHtml = video && video.src
             ? `<section class="playlist-section">
-                    <iframe class="bio-video-embed" width="942" height="530" src="${video.src}" title="${video.title || p.nombre}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe class="bio-video-embed" src="${video.src}" title="${video.title || p.nombre}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </section>`
             : '';
     
@@ -417,6 +490,7 @@ fetch('biografias.json')
         </div>
         <div id="bio-texto">${p.texto}</div>
                 ${videoHtml}
+            ${navHtml}
       </div>
     `;
 

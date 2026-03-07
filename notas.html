@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="pagina-notas">
     <header class="encabezado">
         <div class="contenido-header">
             <div class="logo">
@@ -32,7 +32,7 @@
         <section class="contenido">
             <h2 class="titulo-intro">GIMNASIA Y MALVINAS</h2>
 
-            <iframe width="1014" height="570" 
+            <iframe
                 src="https://www.youtube.com/embed/vuj2PhmZ9-4" 
                 title="Gimnasia y Malvinas: 40 años  | Documental" 
                 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -163,7 +163,7 @@ primer acto insurreccional de soldados civiles contra las fuerzas armadas (Ferna
 Magno).<br><br>
     </p>
 
-    <iframe width="1014" height="570" 
+    <iframe
     src="https://www.youtube.com/embed/guYdW11XXG4" 
     title="Malvinas: a 40 años del fallido acto homenaje" 
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -224,7 +224,7 @@ lo mismo, entonces hay una fusión terrible, se forma un grupo muy fuerte (...)<
 “Gimnasia y Malvinas: 40 años”, realizado por la Subcomisión de Cultura en el año 2022.<br><br>
     </p>
 
-    <iframe width="1013" height="570" 
+    <iframe
     src="https://www.youtube.com/embed/vuj2PhmZ9-4" 
     title="Gimnasia y Malvinas: 40 años | Documental" 
     frameborder="0" 
@@ -244,16 +244,35 @@ lo mismo, entonces hay una fusión terrible, se forma un grupo muy fuerte (...)<
 <section class="cierre">
   <p class="texto-intro">
     La información aquí expuesta es parte del trabajo “Gimnasia y Malvinas: una identidad que
-    une, potencia y moviliza” (2025) de Agustín Bellido y Guadalupe Burtre. Para leer el trabajo
-    completo, ingresar al siguiente link: FALTA EL LINK<br><br>
+    une, potencia y moviliza” (2025) de Agustín Bellido y Guadalupe Burtre. <br><br>
 
     Para estar al tanto de las actividades de la Filial de ex soldados combatientes de Malvinas
-    del Club, seguilos en sus redes sociales:<br><br>
+    del Club, seguilos en sus redes sociales:
+  </p>
 
-    <span class="titulo-azul">FACEBOOK: <a href="https://www.facebook.com/filial.gimnasiamalvinas" target="_blank">https://www.facebook.com/filial.gimnasiamalvinas</a></span>
-    <br><br>
-    <span class="titulo-azul">INSTAGRAM: <a href="https://www.instagram.com/filialmalvinascge/?hl=e" target="_blank">https://www.instagram.com/filialmalvinascge/?hl=e</a></span>
-</p>
+  <div class="redes-malvinas" aria-label="Redes sociales de la Filial de ex soldados combatientes de Malvinas">
+    <a
+      class="red-link red-link-facebook"
+      href="https://www.facebook.com/filial.gimnasiamalvinas"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir Facebook de la Filial de ex soldados combatientes de Malvinas"
+    >
+      <span class="red-nombre">Facebook</span>
+      <span class="red-url">/filial.gimnasiamalvinas</span>
+    </a>
+
+    <a
+      class="red-link red-link-instagram"
+      href="https://www.instagram.com/filialmalvinascge/?hl=e"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir Instagram de la Filial de ex soldados combatientes de Malvinas"
+    >
+      <span class="red-nombre">Instagram</span>
+      <span class="red-url">@filialmalvinascge</span>
+    </a>
+  </div>
 
     </main>
 
@@ -326,16 +345,41 @@ lo mismo, entonces hay una fusión terrible, se forma un grupo muy fuerte (...)<
 
                         </footer>
     <script>
-function toggleTexto(btn) {
-  const div = btn.previousElementSibling; 
-  div.classList.toggle("active");
-
-  if(div.classList.contains("active")) {
-    btn.textContent = "Leer menos";
-  } else {
-    btn.textContent = "Leer más";
-  }
+function ajustarAlturaDesplegable(div) {
+  div.style.maxHeight = `${div.scrollHeight}px`;
 }
+
+function toggleTexto(btn) {
+  const div = btn.previousElementSibling;
+  const estaAbierto = div.classList.contains("active");
+
+  if (estaAbierto) {
+    div.style.maxHeight = `${div.scrollHeight}px`;
+    requestAnimationFrame(() => {
+      div.style.maxHeight = "0px";
+      div.classList.remove("active");
+    });
+    btn.textContent = "Leer más";
+    return;
+  }
+
+  div.classList.add("active");
+  ajustarAlturaDesplegable(div);
+  btn.textContent = "Leer menos";
+}
+
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".texto-desplegable.active").forEach(ajustarAlturaDesplegable);
+});
+
+document.querySelectorAll(".texto-desplegable iframe").forEach((iframe) => {
+  iframe.addEventListener("load", () => {
+    const contenedor = iframe.closest(".texto-desplegable");
+    if (contenedor && contenedor.classList.contains("active")) {
+      ajustarAlturaDesplegable(contenedor);
+    }
+  });
+});
 </script>
 
 </body>

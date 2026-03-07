@@ -161,6 +161,51 @@ main {
   font-weight: 400;
 }
 
+/* Contacto (Quienes somos) */
+
+.bloque-contacto {
+  margin: 2.5rem 0 1rem 4vw;
+  width: calc(100% - 4vw);
+  padding: 0;
+}
+
+.titulo-contacto {
+  font-family: 'Antonio', sans-serif;
+  font-size: 2rem;
+  color: #003970;
+}
+
+.texto-contacto {
+  margin-top: 0.8rem;
+  font-family: 'Public Sans SemiBold', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.boton-contacto {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.15rem;
+  background-color: #0F4170;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-family: 'Antonio', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+  transition: background-color 0.2s ease;
+}
+
+.boton-contacto:hover {
+  background-color: #0c3356;
+}
+
+.boton-contacto:focus-visible {
+  outline: 3px solid #0F4170;
+  outline-offset: 3px;
+}
+
 /* Galeria */
 
 .galeria {
@@ -187,10 +232,11 @@ main {
 /* Player */
 
 iframe {
-  width: 50%;         
-  max-width: 742px;   
-  aspect-ratio: 16/9;   
-  margin: 30px auto 10px; 
+  width: min(100%, 742px);
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  margin: 30px auto 10px;
   display: block;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -204,6 +250,10 @@ footer {
     color: #0F4170;
     margin-top: 3vw;
   }
+
+.pagina-notas footer {
+  margin-top: 1.8vw;
+}
 
 .footer-text{
         margin-left: 9vw;
@@ -292,6 +342,32 @@ footer {
 
   .galeria {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bloque-contacto {
+    margin: 2rem 0 1rem 4vw;
+    width: calc(100% - 4vw);
+    padding: 0;
+  }
+
+  .titulo-contacto {
+    font-size: 1.6rem;
+  }
+
+  .texto-contacto {
+    font-size: 1rem;
+  }
+
+  .boton-contacto {
+    width: 100%;
+    text-align: center;
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto 8px;
+    border-radius: 8px;
   }
   
 }
@@ -565,7 +641,7 @@ footer {
 
 /* Cuando está activo */
 .texto-desplegable.active {
-    max-height: 1000px; /* suficiente para mostrar todo el contenido */
+  max-height: none;
 }
 
 /* Botón leer más */
@@ -587,7 +663,77 @@ footer {
     background-color: #0f4170;
 }
 
+/* Redes sociales (cierre Malvinas) */
+
+.redes-malvinas {
+  margin: 0 1.5vw 2.2rem 4vw;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.red-link {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid #9eb2c4;
+  background: rgba(255, 255, 255, 0.88);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.red-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 65, 112, 0.16);
+  border-color: #0F4170;
+}
+
+.red-link:focus-visible {
+  outline: 3px solid #0F4170;
+  outline-offset: 3px;
+}
+
+.red-nombre {
+  font-family: 'Antonio', sans-serif;
+  font-size: 1.2rem;
+  color: #003970;
+  letter-spacing: 0.3px;
+}
+
+.red-url {
+  font-family: 'Public Sans SemiBold', sans-serif;
+  font-size: 0.96rem;
+  color: #2f3c47;
+  word-break: break-word;
+}
+
+.red-link-facebook {
+  border-left: 5px solid #1877f2;
+}
+
+.red-link-instagram {
+  border-left: 5px solid #e1306c;
+}
+
 .titulo-azul, .titulo-azul a {
     color: #003970; /* mismo azul que los títulos */
     text-decoration: none; /* opcional, para que no aparezca subrayado */
+}
+
+@media (max-width: 768px) {
+  .foto-malvinas img {
+    width: 86%;
+  }
+
+  .pie-foto-malvinas {
+    width: 86%;
+    margin-inline: auto;
+  }
+
+  .redes-malvinas {
+    margin: 0 4vw 2rem;
+    grid-template-columns: 1fr;
+  }
 }
